@@ -1,4 +1,5 @@
-@import './base.css';
+@import "primevue/resources/themes/lara-light-indigo/theme.css";
+@import "primevue/resources/primevue.min.css";
 
 #app {
   max-width: 1280px;
@@ -23,13 +24,10 @@ a,
 
 @media (min-width: 1024px) {
   body {
-    display: flex;
-    place-items: center;
+    font-family: var(--font-family);
   }
 
   #app {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    padding: 0 2rem;
+
   }
 }
