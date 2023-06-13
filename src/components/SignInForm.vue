@@ -8,14 +8,14 @@ const checked =  reactive({
 });
 const data = reactive({
   userData: {
-    userName: 'Vasile',
-    userPassword: 'dskjdk',
-    userEmail: 'jksaj@jskj'
+    userName: '',
+    userPassword: '',
+    userEmail: ''
   }
 })
 
 function post() {
-  axiosService.setUserParams(this.data);
+  axiosService.setUserParams(data);
 }
 function mounted() {
   console.log('Mounted hook called')
