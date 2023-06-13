@@ -1,4 +1,5 @@
 <script setup>
+import Logo from "./icons/IconCommunity.vue";
 
 </script>
 
@@ -6,10 +7,10 @@
   <div class="grid">
     <div class="surface-card  col-6 col-offset-3 p-4 shadow-2 border-round w-full lg:w-6">
       <div class="text-center mb-5">
-        <img src="/hyper.svg" alt="Image" height="50" class="mb-3">
+        <Logo alt="Image" height="50" class="mb-3"/>
         <div class="text-900 text-3xl font-medium mb-3">Welcome Back</div>
         <span class="text-600 font-medium line-height-3"> Don't have an account?</span>
-        <a href="/sign-in" class="font-medium no-underline ml-2 text-blue-500 cursor-pointer">Create today!</a>
+          <a href="/sign-in" class="font-medium no-underline ml-2 text-blue-500 cursor-pointer">Create today!</a>
       </div>
 
       <div>

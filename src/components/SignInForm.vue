@@ -1,6 +1,8 @@
 <script setup>
 import axiosService from "../axiosService";
 import { reactive, computed } from 'vue'
+import Logo from "./icons/IconCommunity.vue";
+
 const checked =  reactive({
   checked: false
 });
@@ -24,7 +26,7 @@ function mounted() {
   <div class="grid">
     <div class="surface-card col-6 col-offset-3 p-4 shadow-2 border-round w-full lg:w-6 md:w-3">
       <div class="text-center mb-5">
-        <img src="hyper.svg" alt="Image" height="50" class="mb-3">
+        <Logo  alt="Image" height="50" class="mb-3"/>
         <div class="text-900 text-3xl font-medium mb-3">Create User</div>
         <span class="text-600 font-medium line-height-3">Have an account?</span>
         <a href="/login" class="font-medium no-underline ml-2 text-blue-500 cursor-pointer">go to Login Page!</a>
