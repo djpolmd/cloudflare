@@ -5,7 +5,7 @@ import { router } from "./router";
 import "primeicons/primeicons.css";
 import "primeflex/primeflex.css";
 import "primevue/resources/themes/lara-light-blue/theme.css";
-import "primevue/resources/primevue.min.css";
+import "./assets/style.scss";
 
 import PrimeVue from "primevue/config";
 import AutoComplete from 'primevue/autocomplete';
@@ -104,18 +104,20 @@ import TreeSelect from 'primevue/treeselect';
 import TreeTable from 'primevue/treetable';
 import TriStateCheckbox from 'primevue/tristatecheckbox';
 import VirtualScroller from 'primevue/virtualscroller';
-
+import { defineRule } from 'vee-validate';
+import {createPinia, defineStore} from 'pinia'
+import axiosService from "./axiosService";
 
 const app = createApp(App);
-const db = {};
-db.url = import.meta.env.DB_URL;
-
+const pinia = createPinia();
 
 app.use(PrimeVue, { ripple: true });
 app.use(ConfirmationService);
 app.use(ToastService);
 app.use(DialogService);
 app.use(router);
+app.use(pinia);
+
 
 app.directive('tooltip', Tooltip);
 app.directive('badge', BadgeDirective);
@@ -212,5 +214,32 @@ app.component('TreeTable', TreeTable);
 app.component('TriStateCheckbox', TriStateCheckbox);
 app.component('VirtualScroller', VirtualScroller);
 
+export const logUser = defineStore ('user', {
+    state: () => ({
+        userData: null,
+        // ...
+    }),
+    getters: {
+        getUser: (state) => {
+           return  state.userData
+            }
+        },
+
+    actions:{
+        login(email, password ){
+            axiosService.getUser(email, password).then((r) => {
+                if(r.data)
+                    {
+                        this.userData = r.data;
+                        router.push('/');
+                    }
+            }).catch((error) => {
+                if(error.response.status === 404) {
+                    alert('Wrong credentials')
+                };
+            });
+        }
+    }
+});
 
 app.mount("#app");

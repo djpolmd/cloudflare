@@ -1,21 +1,20 @@
 import axios from "axios";
-const worker_url = import.meta.env.DB_URL ? import.meta.env.DB_URL : 'https://mongo-realm-worker.djpolmd.workers.dev' ;
+const worker_url = import.meta.env.DB_URL ? import.meta.env.DB_URL : 'https://api.djpolmd.workers.dev' ;
 const api_token = import.meta.env.DB_TOKEN ?  import.meta.env.DB_TOKEN : 'x2MfNEn7jt09F5zliAfMZDflz68qq6jyZ2be7KOtpnQqyNxlaagcxDmDunHkeADe';
 const HTTP = axios.create({
     baseURL: import.meta.env,
     headers: {
         'Access-Control-Allow-Origin': '*',
-        'Access-Control-Allow-Methods': 'DELETE, POST, GET, OPTIONS',
-        'Access-Control-Allow-Headers': 'Content-Type, Authorization, X-Requested-With',
-        'Access-Control-Allow-Credentials': true,
+        'Vary': 'Origin',
+        'Access-Control-Allow-Methods': '*',
+        'Access-Control-Allow-Headers': 'Content-Type, Authorization, Origin, Accept',
+        'Access-Control-Allow-Credentials': 'true',
          'Content-type': 'application/json',
-         authorization: api_token,
-
+        "upgrade-insecure-requests": "1",
+        authorization: api_token,
     }
 })
 export default class axiosService {
-
-
     axiosGet(url, options = {}) {
         return axios.get(url, options)
             .catch((error) => {
@@ -39,10 +38,20 @@ export default class axiosService {
     }
 
     static setUserParams(data){
-        console.log(worker_url, api_token);
-        return HTTP.post(worker_url, data).then( (response) => { console.log(response.data) });
+        console.log(worker_url + '/api/users', api_token);
+        return HTTP.post(worker_url + '/api/users', data).then( (response) => { console.log(response.data) });
     }
 
+    static getByEmail(email){
+        return HTTP.get(worker_url + '/api/users?email=' + email);
+    }
+    // Authentificate
+    static getUser(email, password){
+        return HTTP.get(worker_url + '/api/authenticate?email=' + email + '&password=' + password);
+            // alert(error.response.status)
+    }
 
-
+    static getUserList(){
+        return HTTP.get(worker_url + '/api/users');
+    }
 }
