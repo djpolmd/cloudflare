@@ -343,7 +343,7 @@ watch(
       >
         <div>
           <div class="text-blue-100 font-medium text-xl mt-2 mb-3">TAKE THE NEXT STEP</div>
-          <div class="text-white font-medium text-5xl">Try PrimeBlocks</div>
+          <div class="text-white font-medium text-5xl">Try Play Chess</div>
         </div>
         <div class="mt-4 mr-auto md:mt-0 md:mr-0">
           <a href="https://www.primefaces.org/primeblocks-vue" class="p-button font-bold px-5 py-3 p-button-warning p-button-rounded p-button-raised"> Get Started </a>
